@@ -1,7 +1,24 @@
 const pg = require('pg');
 const client = new pg.Client('postgres://localhost/puppy_shop_db');
+const cors = require('cors');
 const express = require('express');
-const app = express('')
+const app = express('');
+
+app.use(cors());
+
+app.get('/api/pets', async(req, res, next)=> {
+    try {
+        const SQL = `
+            SELECT *
+            FROM pets
+        `;
+        const repsonse = await client.query(SQL);
+        res.send(response.rows);
+    }
+    catch(ex){
+        next(ex);
+    }
+});
 
 const setup = async() => {
     await client.connect();
