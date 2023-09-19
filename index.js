@@ -12,7 +12,7 @@ app.get('/api/pets', async(req, res, next)=> {
             SELECT *
             FROM pets
         `;
-        const repsonse = await client.query(SQL);
+        const response = await client.query(SQL);
         res.send(response.rows);
     }
     catch(ex){
